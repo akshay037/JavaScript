@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="demo()">Click me</button>
+    <button onclick="sum()">Plus</button>
+    <h1>Hello</h1>
+    <div id="title">Lorem</div>
+    <span class="demo">Lorem</span>
+    <script>
+        function demo() {
+            console.log("Clicked")
+        }
+
+        const num1 = 10, num2 = 20
+
+        function sum() {
+            console.log(num1 + num2)
+        }
+
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
+
+        // console.log(window)
+        // console.log(document)
+        // console.log(window.document)
+        // window.alert("Hello")
+        //alert("Kemcho majja ma ??")
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
+
+        const result1 = document.getElementsByTagName("h1")
+        const result2 = document.getElementById("title")
+        const result3 = document.getElementsByClassName("demo")
+        const result4 = document.querySelector("h1")
+        const result5 = document.querySelector("#title")
+        const result6 = document.querySelector(".demo")
+        console.log(result1)
+        console.log(result2)
+        console.log(result3)
+        console.log(result4)
+        console.log(result5)
+        console.log(result6)
+
+        // DOM - Document Object Model
+        // VOM - Virtual Object Model
+        // Virtual DOM - Virtual Document Object Model
+
+    </script>
+</body>
+
+</html>
