@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="tog()">click</button>
+    <script>
+        let arg = 1
+        function tog() {
+            if (arg === 1) {
+                console.log("hi")
+                arg = 10
+
+            } else {
+                console.log("bye")
+                arg = 1
+            }
+        }
+
+
+        // Template String
+
+        const x = 10
+
+        console.log("hello", x, "thank you")
+        console.log('hello', x, 'thank you')
+        console.log(`hello ${x} thank you`)
+
+
+    </script>
+</body>
+
+</html>
