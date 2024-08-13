@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap By SKILLHUB</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <button type="button" onclick="addarr()" class="btn btn-primary">Add array</button>
+  <button type="button" onclick="get()" class="btn btn-primary">Get</button>
+  <button type="button" onclick="remove()" class="btn btn-primary">Remove</button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const arr = ["dell", "hp"]
+    function addarr() {
+      const x = JSON.stringify(arr)     //serialize
+      localStorage.setItem("user", x)
+    }
+
+    function get() {
+      const result = localStorage.getItem("user")
+      const x = JSON.parse(result)      //serialize
+      console.log(x)
+    }
+    function remove() {
+      localStorage.removeItem("user")
+    }
+  </script>
+</body>
+
+</html>
