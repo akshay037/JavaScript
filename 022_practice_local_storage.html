@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <input type="text" id="inp">
+    <button onclick="addToLocal()">Add</button>
+    <div id="root"></div>
+    <script>
+        const addToLocal = () => {
+            const val = document.querySelector("#inp").value
+            const arr = JSON.parse(localStorage.getItem("Key_name_whatever"))
+            const x = arr ? arr : []
+            x.push(val)
+            localStorage.setItem("Key_name_whatever", JSON.stringify(x))
+            display()
+        }
+        const display = e => {
+            document.querySelector("#root").innerHTML += ""
+            const arr = JSON.parse(localStorage.getItem("Key_name_whatever"))
+            if (arr) {
+                for (const item of arr) {
+                    document.querySelector("#root").innerHTML += `<h1>${item}</h1>`
+                }
+            }
+        }
+        display()
+    </script>
+</body>
+
+</html>
