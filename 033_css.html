@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            background-color: coral;
+            border: 10px solid blue;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse commodi eligendi modi, quaerat ipsam
+        asperiores provident natus doloribus vero rem earum maiores eveniet? Quaerat, repellendus. Possimus eveniet
+        aliquam ullam placeat!</h1>
+    <button onclick="display()">Click me</button>
+    <button onclick="add()">Add </button>
+    <button onclick="remove()">Remove </button>
+    <button onclick="isClass()">Check</button>
+
+    <script>
+        const display = () => {
+            const title = document.querySelector("#title")
+            title.style.color = "red"
+            title.style.backgroundColor = "blue"
+        }
+        const add = e => title.classList.add("box")
+        const remove = e => title.classList.remove("box")
+        const isClass = e => {
+            const x = title.classList.contains("box")
+            console.log(x)
+        }
+    </script>
+</body>
+
+</html>
