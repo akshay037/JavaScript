@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- resolve -->
+    <!-- pending -->
+    <!-- reject -->
+    <!-- JS works on synchornounse -->
+
+    <script>
+        const x = (resolve, reject) => {
+            // resolve("ok")
+            reject("error")
+        }
+        const fn = () => {
+            return new Promise(x)
+        }
+        const success = arg => console.log(arg)
+        const error = arg => console.warn(arg)
+        fn()
+            .then(success)
+            .catch(error)
+    </script>
+
+</body>
+
+</html>
