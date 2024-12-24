@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="output">
+    </div>
+    <script>
+        const arr = ["dell", "hp", "apple"]
+        const arr1 = [
+            { brand: "dell" },
+            { brand: "hp" },
+            { brand: "apple" },
+        ]
+        for (let i = 0; i < arr.length; i++) {
+            document.querySelector("#output").innerHTML += `<h1>${arr[i]}</h1>`
+        }
+
+        for (let i = 0; i < arr1.length; i++) {
+            document.querySelector("#output").innerHTML += `<h1>${arr1[i].brand}</h1>`
+        }
+
+        arr1.push({ country: "japan", brand: "fijitsu" })
+        console.log(arr1)
+
+
+    </script>
+</body>
+
+</html>
