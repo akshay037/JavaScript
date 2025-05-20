@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container d-flex align-items-center justify-content-center mt-5 gap-5">
+        <div class="card col-sm-6">
+            <div class="card-header">budget</div>
+            <div class="card-body">
+                <div>
+                    <label for="name" class="form-label">Enter amount</label>
+                    <input type="number" class="form-control" id="amount" placeholder="Enter Your Name" />
+                </div>
+                <div>
+                    <label for="name" class="form-label">Enter reason</label>
+                    <input type="text" class="form-control" id="reason" placeholder="Enter Your Name" />
+                </div>
+                <br>
+                <select class="form-select" id="type">
+                    <option selected>Choose type</option>
+                    <option value="inc">income</option>
+                    <option value="exp">expence</option>
+                </select>
+                <br>
+                <button onclick="handleAdd()" type="button" class="btn btn-primary w-100">Add</button>
+            </div>
+        </div>
+
+
+
+        <div class="card col-sm-6">
+            <div class="card-header text-end">
+                <label for="">balance: <strong class="text-success" id="balance"></strong></label>
+            </div>
+            <div class="card-body mb-0" id="output">
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const amount = document.querySelector("#amount")
+        const reason = document.querySelector("#reason")
+        const type = document.querySelector("#type")
+        const output = document.querySelector("#output")
+        const balance = document.querySelector("#balance")
+        const account = []
+
+
+        const handleAdd = e => {
+            account.push({
+                amount: +amount.value,
+                reason: reason.value,
+                type: type.value
+            })
+            display()
+        }
+
+        const display = e => {
+            let income = 0, expense = 0
+            output.innerHTML = ""
+            for (const item of account) {
+                if (item.type === "inc") {
+                    income += item.amount
+
+                } else {
+                    expense += item.amount
+                }
+                output.innerHTML += `<div class="alert alert-${item.type === "inc" ? "success" : "danger"} d-flex justify-content-between">
+                    <strong>${item.amount}/-</strong>
+                    <label>${item.reason}</label>
+                </div>
+                `
+            }
+            balance.innerHTML = (income - expense)
+        }
+
+    </script>
+</body>
+
+</html>
