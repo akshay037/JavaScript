@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <i class="bi bi-alarm"></i>
+    <div class="text-center" id="timer"></div>
+    <div id="root"></div>
+    <div id="feedback"></div>
+    <div id="marks"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+
+        let questionNumber = 0
+        let attempt = 0
+        let limit = 10
+        let result = []
+        const t = setInterval(() => {
+            timer.innerHTML = limit
+            if (limit === 0) {
+                root.innerHTML = ""
+                timer.innerHTML = ""
+                marks.innerHTML = `Exam sampli ghari jaa !! marks = ${result.length}`
+                clearInterval(t)
+            }
+            limit--
+        }, 1000)
+        const timer = document.querySelector("#timer")
+        const root = document.querySelector("#root")
+        const feedback = document.querySelector("#feedback")
+        const questions = [
+            { q: "1+2=?", options: [3, 5, "not a options", 2], answer: 3 },
+            { q: "2+1=?", options: ["not a options", 5, 3, 2], answer: 3 },
+            { q: "3+2=?", options: [55, 5, 7, "not a options"], answer: 5 },
+            { q: "4+1=?", options: [55, "not a options", 5, 2], answer: 5 },
+        ]
+        const display = i => {
+            // let str = ""
+            // for (const item of questions[i].options) {
+            //     str += `<div class="form-check">
+            //             <input class="form-check-input" id="${item}" type="radio" name="${questions[i].q}" >
+            //             <label class="form-check-label" for="${item}">${item}</label>
+            //             </div>`
+            // }
+
+            const str = questions[i].options.map(item => `<div class="form-check">
+                        <input class="form-check-input" id="${item}" type="radio" value="${item}" name="${questions[i].q}" >
+                        <label class="form-check-label" for="${item}">${item}</label>
+                        </div>`)
+
+            root.innerHTML = `
+            <h1>${questions[i].q}</h1>
+            ${str}
+            ${questionNumber > 0 ? '<button class="btn btn-sm btn-primary" onclick="handlePrev()">Previous</button>' : ""}
+            ${questionNumber < questions.length - 1 ? '<button class="btn btn-sm btn-primary" onclick="handleNext()">Next</button>' : ""}
+            `
+        }
+        const handlePrev = e => {
+            // if (questionNumber < questions.length + 1) {
+            if (questionNumber > 0) {
+                questionNumber--
+                display(questionNumber)
+            }
+        }
+        const handleNext = e => {
+            attempt++
+            const op = document.getElementsByTagName("input")
+            for (const item of op) {
+                if (item.checked) {
+                    if (item.value == questions[questionNumber].answer) {
+                        result.push(questionNumber)
+                        feedback.innerHTML = `<div class="alert alert-success">Good job</div>`
+                    }
+                    else {
+                        feedback.innerHTML = `<div class="alert alert-danger">Aree pagal</div>`
+                        if (attempt === 2) {
+                            return feedback.innerHTML = `<div class="alert alert-danger">Your are blocked</div>`
+                        }
+                    }
+                    setTimeout(e => feedback.innerHTML = "", 2000)
+                }
+            }
+            if (questionNumber < questions.length - 1) {
+                questionNumber++
+                display(questionNumber)
+            }
+        }
+        display(questionNumber)
+    </script>
+</body>
+
+</html>
