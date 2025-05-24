@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap By SKILLHUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .seat {
+            height: 900px;
+            width: 40px;
+            border: solid#999;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/037_tailwind.config.js"></script>
+
+</head>
+
+<body class="flex h-screen justify-center items-center flex-col gap-5">
+    <div id="feedback"></div>
+    <div id="bus" class="border border-gray-500 p-5 shadow-2xl"></div>
+
+
+
+    <script>
+
+        const bus = document.querySelector("#bus")
+        const feedback = document.querySelector("#feedback")
+        const price = 500
+
+        bus.innerHTML += `<div class="flex justify-center items-center flex-col gap-0">
+                                <div><i class="fa-regular fa-circle-xmark"></i></div>
+                                <div fs-4><i class="fa-solid fa-chair"></i></div>
+                        </div>`
+
+        for (let i = 0; i < 5; i++) {
+            bus.innerHTML += `
+            <div class="flex gap-10 my-1 ">
+                <div id="s-${i}" onclick="handleSelect('#s-${i}')" class="border border-gray-400 h-24 w-14" ><i class="fa-solid fa-chair flex mt-10 justify-center"></i></div>
+                <div class="flex gap-1">
+                    
+                    <div id="l-${i}" onclick="handleSelect('#l-${i}')" class="border border-gray-400 h-24 w-14"><i class="fa-solid fa-chair flex mt-10 justify-center"></i></div>
+                    <div id="r-${i}" onclick="handleSelect('#r-${i}')" class="border border-gray-400 h-24 w-14"><i class="fa-solid fa-chair flex mt-10 justify-center"></i></div>
+                </div>
+            </div>
+            `
+        }
+
+        bus.innerHTML += `<button onclick="handleBooking()" class="w-full bg-green-200 p-5 mt-4">Book</button>`
+
+        const handleSelect = id => {
+            const hasClass = document.querySelector(id).classList.contains("bg-gray-500")
+            if (hasClass) {
+                alert("Already Booked")
+            }
+            else {
+
+                const selectedSeats = document.querySelector(id)
+                selectedSeats.classList.contains("bg-green-700")
+                    ? selectedSeats.classList.remove("bg-green-700")
+                    : selectedSeats.classList.add("bg-green-700")
+
+                const x = document.querySelectorAll(".bg-green-700")
+                feedback.innerHTML = `You have selected ${x.length} 💺 seats and your est. bill is ${x.length * price}💲 `
+            }
+        }
+
+        handleBooking = e => {
+            const allSeats = document.querySelectorAll(".bg-green-700")
+            const arr = JSON.parse(localStorage.getItem("bookings"))
+            const seatIds = arr ? arr : []
+            for (const item of allSeats) {
+                // item.classList.add("bg-gray-500")
+                seatIds.push(item.id)
+            }
+            localStorage.setItem("bookings", JSON.stringify(seatIds))
+            feedback.innerHTML = "Booking success !"
+            display()
+        }
+        const display = e => {
+            const selectedSeats = document.querySelectorAll(".bg-green-700")
+            for (const item of selectedSeats) {
+                item.classList.remove("bg-green-700")
+
+            }
+            const arr = JSON.parse(localStorage.getItem("bookings"))
+            if (arr) {
+                for (const item of arr) {
+                    document.querySelector(`#${item}`).classList.add("bg-gray-500")
+                }
+            }
+        }
+        display()
+    </script>
+
+</body>
+
+</html>
